@@ -1,36 +1,87 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Drizzle ORM v1 beta 2 Playground (Type-Safe DB)
 
-## Getting Started
+This repo is a small **Next.js App Router** project meant to showcase **Drizzle ORM v1 beta 2** capabilities—especially **end-to-end type-safety**, clean schema definitions, and typed queries.
 
-First, run the development server:
+If you want the official release details, see the Drizzle docs: https://orm.drizzle.team/docs/latest-releases/drizzle-orm-v1beta2
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+## What this repo demonstrates
+
+- **Strongly typed schema** in `src/lib/db/schema.ts`
+- **Typed DB client** in `src/lib/db/client.ts`
+- Type-safe queries that infer:
+  - column types
+  - select/insert shapes
+  - relations (if you add them)
+  - query results
+- Simple **reset + seed** scripts to quickly iterate
+
+---
+
+## Project structure
+
+```sh
+src
+├── lib
+│   ├── config.ts
+│   └── db
+│       ├── client.ts
+│       └── schema.ts
+└── scripts
+    ├── db
+    │   ├── reset.ts
+    │   └── seed.ts
+    └── playground.ts
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Development Guide
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Follow the steps below to set up the project locally and explore the type-safe database features.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 1. Create your environment file
 
-## Learn More
+Copy the example environment configuration:
 
-To learn more about Next.js, take a look at the following resources:
+```sh
+cp .env.example .env
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Then update the required variables (such as DATABASE_URL) if needed.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 2. Prepare the database
 
-## Deploy on Vercel
+Initialize the database schema and seed data:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```sh
+pnpm db:restart
+```
+This command will:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Reset the database
+- Push the latest schema
+- Seed the database with sample data
+
+### 3. Inspect the database
+
+Open the Drizzle Studio UI to verify the tables and data:
+
+```sh
+pnpm db:studio
+```
+
+Then open:
+
+https://local.drizzle.studio
+
+You should see the generated tables and seeded records.
+
+### 4. Run the playground script
+
+Execute the example script to explore typed queries and experiment with the database:
+
+```sh
+pnpm tsx src/scripts/playground.ts
+```
+
+This script demonstrates how Drizzle ORM v1 beta 2 provides strong TypeScript typing for queries, inserts, and schema interactions.
