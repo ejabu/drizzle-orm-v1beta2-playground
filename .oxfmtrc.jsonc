@@ -1,6 +1,5 @@
 {
   "$schema": "./node_modules/oxfmt/configuration_schema.json",
-  "ignorePatterns": [],
   "printWidth": 80,
   "tabWidth": 2,
   "useTabs": false,
@@ -10,4 +9,10 @@
   "sortTailwindcss": {
     "functions": ["clsx", "cn", "tw"],
   },
+  "ignorePatterns": [
+    "node_modules/**",
+    ".next/**",
+    "dist/**",
+    "drizzle/meta/**",
+  ],
 }
