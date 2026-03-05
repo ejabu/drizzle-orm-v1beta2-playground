@@ -2,7 +2,7 @@ import "dotenv/config";
 import { z } from "zod";
 
 const schema = z.object({
-  DATABASE_URL: z.string().default(".pglite"),
+  DATABASE_URL: z.string(),
   DATABASE_TYPE: z.enum(["pglite", "postgres"]).default("pglite"),
 });
 
