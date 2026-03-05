@@ -6,6 +6,16 @@ If you want the official release details, see the Drizzle docs: https://orm.driz
 
 ---
 
+## TLDR
+
+Use commands below for quick run. See details in [Development Guide](#development-guide)
+
+```sh
+pnpm install
+pnpm db:restart
+pnpm tsx src/scripts/playground.ts
+```
+
 ## What this repo demonstrates
 
 - **Strongly typed schema** in `src/lib/db/schema.ts`
