@@ -13,6 +13,7 @@ type DbConfig = DrizzleConfig & {
 const dbConfig = {
   connection: config.DATABASE_URL,
   relations,
+  casing: "snake_case",
 } satisfies DbConfig;
 
 export const getDb = () => {
