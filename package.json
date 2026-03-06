@@ -16,7 +16,7 @@
     "db:push": "drizzle-kit push",
     "db:reset": "tsx src/scripts/db/reset.ts",
     "db:seed": "tsx src/scripts/db/seed.ts",
-    "db:restart": "pnpm db:reset && pnpm db:push && pnpm db:seed"
+    "db:refresh": "pnpm db:reset && pnpm db:push && pnpm db:seed"
   },
   "dependencies": {
     "@electric-sql/pglite": "^0.3.15",

@@ -12,7 +12,7 @@ Use commands below for quick run. See details in [Development Guide](#developmen
 
 ```sh
 pnpm install
-pnpm db:restart
+pnpm db:refresh
 pnpm tsx src/scripts/playground.ts
 ```
 
@@ -64,7 +64,7 @@ Then update the required variables (such as DATABASE_URL) if needed.
 Initialize the database schema and seed data:
 
 ```sh
-pnpm db:restart
+pnpm db:refresh
 ```
 This command will:
 
