@@ -1,18 +1,25 @@
 import "dotenv/config";
+import { DrizzleConfig } from "drizzle-orm";
 import { drizzle as pgDrizzle } from "drizzle-orm/node-postgres";
 import { drizzle as pgliteDrizzle } from "drizzle-orm/pglite/driver";
 
 import { config } from "@/lib/config";
 import { relations } from "@/lib/db/schema";
 
-const pgDatabase = pgDrizzle({ connection: config.DATABASE_URL, relations });
-const pgliteDatabase = pgliteDrizzle({ connection: config.DATABASE_URL, relations });
+type DbConfig = DrizzleConfig & {
+  connection: string;
+};
+
+const dbConfig = {
+  connection: config.DATABASE_URL,
+  relations,
+} satisfies DbConfig;
 
 export const getDb = () => {
   if (config.DATABASE_TYPE === "postgres") {
-    return pgDatabase;
+    return pgDrizzle(dbConfig);
   } else {
-    return pgliteDatabase;
+    return pgliteDrizzle(dbConfig);
   }
 };
 
