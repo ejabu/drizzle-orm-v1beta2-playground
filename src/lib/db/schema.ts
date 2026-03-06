@@ -8,9 +8,11 @@ import {
 } from "drizzle-orm/pg-core";
 
 const timestamps = {
-  createdAt: timestamp().defaultNow().notNull(),
-  updatedAt: timestamp(),
-  deletedAt: timestamp(),
+  createdAt: timestamp({ withTimezone: true }).defaultNow().notNull(),
+  updatedAt: timestamp({ withTimezone: true })
+    .defaultNow()
+    .$onUpdate(() => new Date()),
+  deletedAt: timestamp({ withTimezone: true }),
 };
 
 export const article = pgTable("article", {
