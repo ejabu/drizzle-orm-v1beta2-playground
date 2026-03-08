@@ -14,5 +14,6 @@
     ".next/**",
     "dist/**",
     "drizzle/meta/**",
+    "*.md",
   ],
 }
